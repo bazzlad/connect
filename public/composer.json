@@ -1,0 +1,16 @@
+{
+    "name": "barringtonmedia/connect",
+    "description": "A smart(ish) intercom system",
+    "authors": [
+        {
+            "name": "Richard Barrington-Hill",
+            "email": "bazzlad@gmail.com"
+        }
+    ],
+    "require": {
+        "slim/slim": "3.*",
+        "thingengineer/mysqli-database-class": "dev-master",
+        "twbs/bootstrap": "4.0.0",
+        "slim/php-view": "^2.2"
+    }
+}
