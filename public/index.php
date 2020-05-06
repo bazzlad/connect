@@ -24,12 +24,7 @@ $container = $app->getContainer();
 require_once('helpers/helpers.php');
 
 $container['db'] = function ($c) {
-    // prod check
-    if (getcwd() == '/var/sites/q/quizzyrascal.co.uk/public_html') {
-        $db = new MysqliDB ('10.169.0.221', 'quizzyra_quizzy' ,'qu1zzyRa5scal', 'quizzyra_quizzy');
-    } else {
-        $db = new MysqliDb ('localhost', 'quizzy', 'qu1zzyRa5scal', 'quizzy');
-    }
+    $db = new MysqliDb ('localhost', 'connect', 'gol4TOs7Ta', 'connect');
     return $db;
 };
 
@@ -86,39 +81,17 @@ $app->get('/admin/question', function (Request $request, Response $response) {
 
 
 
-// users api
-$app->post('/api/user', function (Request $request, Response $response) {
-    return include('api/user.php');
+// messages api
+$app->post('/api/messages', function (Request $request, Response $response) {
+    return include('api/messages.php');
 });
-$app->get('/api/users', function (Request $request, Response $response) {
-    return include('api/users.php');
-});
-$app->get('/api/scores', function (Request $request, Response $response) {
-    return include('api/scores.php');
-});
-// questions api
-$app->get('/api/questions', function (Request $request, Response $response) {
-    return include('api/questions.php');
-});
-// answers api
-$app->post('/api/answer', function (Request $request, Response $response) {
-    return include('api/answer.php');
-});
-// questions api
-$app->get('/api/answers', function (Request $request, Response $response) {
-    return include('api/answers.php');
-});
+
+
+/*
 $app->post('/api/question', function (Request $request, Response $response) {
     return include('api/question.php');
 });
-$app->post('/api/next-question', function (Request $request, Response $response) {
-    return include('api/next-question.php');
-});
-// quiz api
-$app->post('/api/quiz', function (Request $request, Response $response) {
-    return include('api/quiz.php');
-});
-
+*/
 
 
 $app->run();
