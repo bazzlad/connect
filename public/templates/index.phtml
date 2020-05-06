@@ -9,12 +9,29 @@
 	</header>
 
     <!-- Begin page content -->
-    <main role="main" class="container">
-		<div id="app">
-			<h1>Hello, Mole</h1>
+    <main role="main" id="app" class="row no-gutters">
+		<div class="h-100 w-100 align-items-center hide" id="message-container">
+			<div id="message-content">
+				<h4>Hey Richard</h4>
+				<p>How are you doing? Want some beer?</p>
+				<button type="button" 
+					class="btn btn-lg"
+					onclick="app.messageConfirm()"
+				>
+					Message Read
+				</button>
+			</div>
+
+		</div>
+		<div class="row no-gutters w-100 h-100">
+			<div class="col-sm-12 my-auto">
+				<div id="notification-block" class="card card-block w-50 mx-auto">
+				</div>
+			</div>
 		</div>
     </main>
 
 <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/templates/components/footer.php') ?>
 <!-- extra js here -->
+<script src="/content/js/messages.js"></script>
 <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/templates/components/foot.php') ?>
