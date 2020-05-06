@@ -11,6 +11,7 @@ var app = new Vue({
 	},
 	methods: {
 		init() {
+			this.statusUpdate();
 			window.setTimeout(function() {
 				app.displayNotification();
 			}, 3000);
@@ -45,6 +46,17 @@ var app = new Vue({
 
 			ele = document.getElementById('notification-block');
 			ele.innerHTML = '';
+		},
+		statusUpdate(offline) {
+			var className = "online";
+			if (offline) {
+				className = "offline";
+			}
+			// update screen
+			var ele = document.getElementsByTagName('body')[0];
+			ele.classList.remove('online');
+			ele.classList.remove('offline');
+			ele.classList.add(className);
 		}
 	}
 });
