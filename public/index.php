@@ -30,7 +30,6 @@ $container['db'] = function ($c) {
 
 $container['view'] = new \Slim\Views\PhpRenderer('templates/');
 
-
 /* standard routes */
 // send messages
 $app->get('/', function (Request $request, Response $response) {
@@ -45,56 +44,11 @@ $app->get('/messages', function (Request $request, Response $response) {
     return $response;
 });
 
-
-// admin routes
-$app->get('/admin/', function (Request $request, Response $response) {
-    $response = $this->view->render($response, '/admin/index.phtml');
-    return $response;
-});
-$app->get('/admin', function (Request $request, Response $response) {
-    $response = $this->view->render($response, '/admin/index.phtml');
-    return $response;
-});
-$app->get('/admin/users', function (Request $request, Response $response) {
-    $this->db->orderBy('score', 'desc');
-    $users = $this->db->get('users');
-    $response = $this->view->render($response, '/admin/users.phtml', ['users' => $users]);
-    return $response;
-});
-$app->get('/admin/answers', function (Request $request, Response $response) {
-    $response = $this->view->render($response, '/admin/answers.phtml');
-    return $response;
-});
-$app->get('/admin/questions', function (Request $request, Response $response) {
-    $questions = $this->db->get('questions');
-
-    // sort questions by questionId
-    usort($questions, function ($item1, $item2) {
-        return $item1['questionId'] <=> $item2['questionId'];
-    });
-
-    $response = $this->view->render($response, '/admin/questions.phtml', ['questions' => $questions]);
-    return $response;
-});
-$app->get('/admin/question', function (Request $request, Response $response) {
-    $questions = $this->db->get('question');
-    $response = $this->view->render($response, '/admin/question.phtml', ['questions' => $questions]);
-    return $response;
-});
-
-
-
 // messages api
 $app->post('/api/messages', function (Request $request, Response $response) {
     return include('api/messages.php');
 });
 
-
-/*
-$app->post('/api/question', function (Request $request, Response $response) {
-    return include('api/question.php');
-});
-*/
 
 
 $app->run();

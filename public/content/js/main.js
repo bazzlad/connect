@@ -1,7 +1,3 @@
-$(document).ready(function() {
-});
-
-
 // loader
 var _loader = {
 	skip: false,
