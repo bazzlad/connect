@@ -29,6 +29,8 @@ var app = new Vue({
 					return;
 				}
 				bootbox.alert("Message Sent!");
+				app.message = '';
+				app.prio = 0;
 			})
 			.catch(function (error) {
 			})
@@ -84,9 +86,9 @@ var app = new Vue({
 		},
 		showMessages(messages) {
 			var content = '<br />';
-			if (!messages) {
+			if (!messages.length) {
 				content += `
-					<p>No Messages Found</p>
+					<p class="bold text-center">No Messages Found</p>
 				`;
 			} else {
 				content += `

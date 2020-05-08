@@ -7,7 +7,7 @@ var app = new Vue({
 	el: '#app',
 	data: {
 		// in ms
-		checkFrequency: 10000,
+		checkFrequency: 2000,
 		// are we displaying a message?
 		busy: false,
 		currentMessage: null,
