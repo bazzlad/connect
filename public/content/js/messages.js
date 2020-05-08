@@ -141,7 +141,7 @@ var app = new Vue({
 			})
 			.catch(function (error) {
 				console.log(error);
-				this.statusUpdate(true);
+				app.statusUpdate(true);
 			})
 			// always run
 			.then(function() {
