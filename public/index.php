@@ -31,17 +31,20 @@ $container['db'] = function ($c) {
 $container['view'] = new \Slim\Views\PhpRenderer('templates/');
 
 
-// standard routes
+/* standard routes */
+// send messages
 $app->get('/', function (Request $request, Response $response) {
     $response = $this->view->render($response, 'index.phtml');
     //$response->getBody()->write("Hello");
     return $response;
 });
-$app->get('/login', function (Request $request, Response $response) {
-    $response = $this->view->render($response, 'login.phtml');
+// get messages
+$app->get('/messages', function (Request $request, Response $response) {
+    $response = $this->view->render($response, 'messages.phtml');
     //$response->getBody()->write("Hello");
     return $response;
 });
+
 
 // admin routes
 $app->get('/admin/', function (Request $request, Response $response) {

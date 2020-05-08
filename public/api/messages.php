@@ -13,7 +13,6 @@
 
 	switch ($type) {
 		case 'get':
-
 			$this->db->where('active', 1);
 			$this->db->orderBy('prio');
 			$messages = $this->db->get('messages');
@@ -23,6 +22,31 @@
 				'data' => $messages
 			);
 			
+			return $response->withJson($data);
+		break;
+		case 'seen':
+			// mark seen messages
+			if (!isset($post['id'])) {
+				$data = array(
+					'result' => 'error', 
+					'data' => 'ID is required'
+				);
+				return $response->withJson($data);
+			}
+
+			$this->db->where('id', $post['id']);
+			$data = array (
+				'active' => 0
+			);
+			$messages = $this->db->update('messages', $data);
+
+			$data = array(
+				'result' => 'success', 
+				'data' => 'Message marked as seen'
+			);
+
+			// clean old records
+			removeOldRecords($this->db);
 			return $response->withJson($data);
 		break;
 		default:
@@ -41,6 +65,11 @@ function findObjectById($array, $id) {
 			}
 		}
 	}
+}
+
+// stop messages table growing indefinitely
+function removeOldRecords($db) {
+	$db->rawQuery('DELETE FROM messages WHERE timestamp < NOW() - INTERVAL 30 DAY;');
 }
 
 ?>

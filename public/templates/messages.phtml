@@ -1,0 +1,37 @@
+<?php include_once($_SERVER['DOCUMENT_ROOT'] . '/templates/components/header.php'); ?>
+<!-- extra css here -->
+<link rel="stylesheet" href="/content/css/messages.css" />
+<?php include_once($_SERVER['DOCUMENT_ROOT'] . '/templates/components/head.php') ?>
+
+	<header>
+		<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+		  <a class="navbar-brand" href="/">Connect</a>
+		</nav>
+	</header>
+
+    <!-- Begin page content -->
+    <main role="main" id="app" class="row no-gutters">
+		<div class="h-100 w-100 align-items-center hide" id="message-container">
+			<div id="message-content">
+				<div id="message-text"></div>
+				<button type="button" 
+					class="btn btn-lg"
+					onclick="app.messageConfirm()"
+				>
+					Message Read
+				</button>
+			</div>
+
+		</div>
+		<div class="row no-gutters w-100 h-100">
+			<div class="col-sm-12 my-auto">
+				<div id="notification-block" class="card card-block w-50 mx-auto">
+				</div>
+			</div>
+		</div>
+    </main>
+
+<?php include_once($_SERVER['DOCUMENT_ROOT'] . '/templates/components/footer.php') ?>
+<!-- extra js here -->
+<script src="/content/js/messages.js"></script>
+<?php include_once($_SERVER['DOCUMENT_ROOT'] . '/templates/components/foot.php') ?>

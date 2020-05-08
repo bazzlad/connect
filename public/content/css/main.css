@@ -2,57 +2,6 @@
   display: none;
 }
 
-html, body {
-	height: 100vh;
-	overflow: hidden;
-	background: black;
-}
-
-body.message {
-	background: #28a745!important;
-}
-
-body.prioMessage {
-	background: #dc3545!important;	
-}
-
-.navbar.bg-dark {
-	background: black !important;
-	border-bottom: 1px solid #2a2a2a;
-}
-
-.navbar-dark .navbar-brand {
-	font-weight: bold;
-}
-
-body.online .navbar-dark .navbar-brand {
-	color: #28a745!important;
-}
-
-body.offline .navbar-dark .navbar-brand {
-	color: #dc3545!important;
-}
-
-main {
-	height: 100vh;
-	padding-top: 57px;
-}
-
-.card {
-	background: none !important;
-}
-
-#message-container {
-	background: white;
-	text-align: center;
-	padding: 20px 40px;
-	display: flex;
-}
-
-#message-content {
-	width: 100%;
-}
-
 /* -------------- COMMON CLASSES -------------- */
 
 .debug { border: 1px solid red; }
