@@ -1,5 +1,6 @@
 <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/templates/components/header.php'); ?>
 <!-- extra css here -->
+<link rel="stylesheet" href="/content/css/index.css" />
 <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/templates/components/head.php') ?>
 
 	<header>
@@ -9,29 +10,39 @@
 	</header>
 
     <!-- Begin page content -->
-    <main role="main" id="app" class="row no-gutters">
-		<div class="h-100 w-100 align-items-center hide" id="message-container">
-			<div id="message-content">
-				<h4>Hey Richard</h4>
-				<p>How are you doing? Want some beer?</p>
-				<button type="button" 
-					class="btn btn-lg"
-					onclick="app.messageConfirm()"
-				>
-					Message Read
-				</button>
+    <main role="main" id="app" class="container">
+
+    	<div id="send-view" v-show="!isViewMode">
+			<div class="form-group">
+				<label for="prio">Priority</label>
+				<select class="form-control" id="prio" v-model="prio">
+					<option value='0'>Standard</option>
+					<option value='1'>Emergency</option>
+				</select>
 			</div>
 
+			<div class="form-group">
+				<label for="message">Message (optional)</label>
+				<textarea class="form-control" id="message" rows="3" v-model="message">
+				</textarea>
+			</div>
+
+			<button type="button" class="btn btn-secondary" @click="toggleView">Message Status</button>
+
+			<button type="button" class="btn btn-primary floatRight" @click="sendMessage">Send Connect</button>
 		</div>
-		<div class="row no-gutters w-100 h-100">
-			<div class="col-sm-12 my-auto">
-				<div id="notification-block" class="card card-block w-50 mx-auto">
-				</div>
+
+		<div id="status-view" v-cloak v-show="isViewMode">
+			<button type="button" class="btn btn-primary floatRight" @click="toggleView">Send Connect</button>
+			<h4>Sent Messages:</h4>
+			<div id="message-list">
 			</div>
 		</div>
+
+
     </main>
 
 <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/templates/components/footer.php') ?>
 <!-- extra js here -->
-<script src="/content/js/messages.js"></script>
+<script src="/content/js/index.js"></script>
 <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/templates/components/foot.php') ?>

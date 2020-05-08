@@ -20,6 +20,10 @@ var app = new Vue({
 	},
 	methods: {
 		init() {
+			// turn off default interceptors
+			axios.interceptors.request.handlers = [];
+			axios.interceptors.response.handlers = [];
+
 			this.statusUpdate();
 			this.getMessages();
 		},
@@ -28,8 +32,6 @@ var app = new Vue({
 			if (this.busy) {
 				return;
 			}
-			// turn off loader
-			_loader.skip = true;
 			// get messages
 			axios.post('/api/messages', {
 				type: 'get'
@@ -40,11 +42,12 @@ var app = new Vue({
 					app.statusUpdate(true);
 					return;
 				}
+				app.statusUpdate();
 				app.processMessages(result.data);
 			})
 			.catch(function (error) {
 				console.log(error);
-				this.statusUpdate(true);
+				app.statusUpdate(true);
 			})
 			// always run
 			.then(function() {
@@ -96,6 +99,8 @@ var app = new Vue({
 					<h4>${this.currentMessage.message}</h4>
 				`;
 				document.getElementById('message-text').innerHTML = messageText;
+			} else {
+				document.getElementById('message-text').innerHTML = '';
 			}
 
 			// turn off alarm

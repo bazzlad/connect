@@ -13,7 +13,11 @@
 
 	switch ($type) {
 		case 'get':
-			$this->db->where('active', 1);
+			if (!isset($post['all'])) {
+				$this->db->where('active', 1);
+			} else {
+				$this->db->orderBy('id', 'desc');
+			}
 			$this->db->orderBy('prio');
 			$messages = $this->db->get('messages');
 
@@ -47,6 +51,32 @@
 
 			// clean old records
 			removeOldRecords($this->db);
+			return $response->withJson($data);
+		break;
+		case 'add':
+			if (!isset($post['active']) || 
+				 !isset($post['message']) ||
+				 !isset($post['prio'])
+				) {
+				$data = array(
+					'result' => 'error', 
+					'data' => 'Wrong variables sent'
+				);
+				return $response->withJson($data);
+			}
+
+			$data = array (
+				'active' => $post['active'],
+				'message' => $post['message'],
+				'prio' => $post['prio']
+			);
+			$messages = $this->db->insert('messages', $data);
+
+			$data = array(
+				'result' => 'success', 
+				'data' => 'Message added successfully'
+			);
+
 			return $response->withJson($data);
 		break;
 		default:
