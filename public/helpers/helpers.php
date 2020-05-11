@@ -1,7 +1,7 @@
  <?php 
 
   global $system;
-  $GLOBALS['version'] = '0.0.1';
+  $GLOBALS['version'] = '0.0.2';
 
   // build scripts
   function buildScripts($pageScripts) {
