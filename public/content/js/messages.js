@@ -98,10 +98,21 @@ var app = new Vue({
 				var messageText = `
 					<h4>${this.currentMessage.message}</h4>
 				`;
+
+				// append time
+				var timestamp = new Date(this.currentMessage.timestamp);
+				var cleanTS = timestamp.getHours() + ':' + timestamp.getMinutes();
+
+				messageText += `
+					<p>Sent at ${cleanTS}</p>
+				`;
+
 				document.getElementById('message-text').innerHTML = messageText;
 			} else {
 				document.getElementById('message-text').innerHTML = '';
 			}
+
+			debugger;
 
 			// turn off alarm
 			if (app.alarm) {

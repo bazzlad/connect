@@ -95,10 +95,10 @@ var app = new Vue({
 					<table class="table">
 						<thead>
 							<tr>
-								<th>ID</th>
 								<th>Message</th>
 								<th>Priority</th>
-								<th>Seen</th>
+								<th class="text-center">Time</th>
+								<th class="text-center">Seen</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -110,12 +110,16 @@ var app = new Vue({
 						className = "message-unseen";
 					}
 
+				// append time
+				var timestamp = new Date(message.timestamp);
+				var cleanTS = timestamp.getHours() + ':' + timestamp.getMinutes();
+
 					content += `
 						<tr class="${className}">
-							<td>${message.id}</td>
 							<td>${message.message}</td>
 							<td>${message.prio ? '<span class="bold text-danger">Emergency</span>' : 'Standard'}</td>
-							<td>${message.active ? 'No' : 'Yes'}</td>
+							<td class="text-center">${cleanTS}</td>
+							<td class="text-center">${message.active ? 'No' : 'Yes'}</td>
 						</tr>
 					`;
 				}
